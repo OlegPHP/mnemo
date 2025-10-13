@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('exercises', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->string('type');
+            $table->longText('data');
             $table->timestamps();
         });
     }

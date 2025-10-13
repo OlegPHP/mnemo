@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('user_exercise_results', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('exercise_id')->constrained()->cascadeOnDelete();
+            $table->unsignedInteger('score');            // числовая оценка
+            $table->text('comment')->nullable();        // комментарий или заметка пользователя
+            $table->timestamp('completed_at')->nullable(); // дата и время выполнения
             $table->timestamps();
         });
+
     }
 
     /**
