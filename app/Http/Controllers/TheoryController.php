@@ -11,4 +11,8 @@ class TheoryController extends Controller
         $theories = Theory::all();
         return view('theory.index', compact('theories'));
     }
+
+    public function show(Theory $theory){
+        return view('theory.show', compact('theory'));
+    }
 }
