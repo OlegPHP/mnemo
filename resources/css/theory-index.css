@@ -1,0 +1,24 @@
+.theory-list li {
+    border-bottom: 1px solid #d4d4d4; /* линия между ссылками в светлой теме */
+    padding: 0.5rem 0;
+}
+
+.dark .theory-list li {
+    border-bottom: 1px solid #404040; /* линия для тёмной темы */
+}
+
+.theory-list a {
+    color: #111827;      /* черный текст на светлой теме */
+    font-size: 1.125rem; /* чуть больше шрифт */
+    line-height: 1.8;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.dark .theory-list a {
+    color: #e5e5e5;      /* белый текст на тёмной теме */
+}
+
+.theory-list a:hover {
+    color: #f59e0b; /* подсветка при наведении, оранжевый/желтый акцент */
+}

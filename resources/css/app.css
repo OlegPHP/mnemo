@@ -64,3 +64,9 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+/* Класс для контента статей */
+/* Красивый контент статей, не трогая Flux */
+.article-content {
+    @apply prose dark:prose-invert max-w-3xl mx-auto p-6;
+}
+
