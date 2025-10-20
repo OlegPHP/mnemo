@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\TheoryController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,6 +15,7 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
+    Route::resource('theories', TheoryController::class);
     Route::redirect('settings', 'settings/profile');
 
     Volt::route('settings/profile', 'settings.profile')->name('profile.edit');
