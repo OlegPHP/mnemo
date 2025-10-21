@@ -14,6 +14,8 @@ class ExerciseController extends Controller
     }
 
     public function show(Exercise $exercise){
-        return view('exercise.show'/*, compact('exercise')*/);
+
+
+        return view('exercise.show', compact('exercise'));
     }
 }
