@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TheoryController;
+use App\Http\Controllers\ExerciseController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
@@ -16,6 +17,7 @@ Route::view('dashboard', 'dashboard')
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('theories', TheoryController::class);
+    Route::resource('exercises', ExerciseController::class);
     Route::redirect('settings', 'settings/profile');
 
     Volt::route('settings/profile', 'settings.profile')->name('profile.edit');
