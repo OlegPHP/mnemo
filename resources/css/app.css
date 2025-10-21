@@ -66,7 +66,29 @@ select:focus[data-flux-control] {
 } */
 /* Класс для контента статей */
 /* Красивый контент статей, не трогая Flux */
+/* Контент статей без использования prose */
 .article-content {
-    @apply prose dark:prose-invert max-w-3xl mx-auto p-6;
+    @apply max-w-3xl mx-auto p-6 space-y-4 leading-relaxed text-gray-800 dark:text-gray-200;
 }
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+    @apply font-bold mt-6 mb-2;
+}
+
+.article-content p {
+    @apply mb-4;
+}
+
+.article-content ul,
+.article-content ol {
+    @apply list-disc list-inside mb-4 space-y-1;
+}
+
+.article-content a {
+    @apply text-blue-600 hover:text-blue-500;
+}
+
 

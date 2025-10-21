@@ -1,6 +1,5 @@
 <x-layouts.app :title="'Мнемотехники — ' . $theory->title">
-    @vite('resources/css/theory.css') <!-- отдельный CSS -->
-    <article class="article-content mx-auto max-w-3xl p-6">
+    <div class="article-content mx-auto max-w-3xl p-6 space-y-6 text-lg">
         {!! $theory->content !!}
-    </article>
+    </div>
 </x-layouts.app>
