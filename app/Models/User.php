@@ -11,6 +11,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use App\Models\Exercise;
+use App\Models\UserExerciseResult;
+use App\Models\UserExerciseWordResult;
 
 class User extends Authenticatable
 {
@@ -65,9 +67,13 @@ class User extends Authenticatable
             ->implode('');
     }
 
-    public function exercises(){
-        return $this->belongsToMany(Exercise::class, 'user_exercise_results')
-            ->withPivot('score', 'comment', 'completed_at')
-            ->withTimestamps();
+    public function exerciseResults()
+    {
+        return $this->hasMany(UserExerciseResult::class);
+    }
+
+    public function exerciseWordResults()
+    {
+        return $this->hasMany(UserExerciseWordResult::class);
     }
 }

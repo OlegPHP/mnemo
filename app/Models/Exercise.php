@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+use App\Models\UserExerciseResult;
+use App\Models\UserExerciseWordResult;
 
 class Exercise extends Model
 {
@@ -19,10 +20,12 @@ class Exercise extends Model
     ];
 
 
-    public function users(){
-        return $this->belongsToMany(User::class, 'user_exercise_results')
-            ->withPivot('score', 'comment', 'completed_at')
-            ->withTimestamps();
+    public function results(){
+        return $this->hasMany(UserExerciseResult::class);
+    }
+
+    public function wordResults(){
+        return $this->hasMany(UserExerciseWordResult::class);
     }
 
     public function getRouteKeyName()
