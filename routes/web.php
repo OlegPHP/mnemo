@@ -21,7 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('exercises', ExerciseController::class)->only(['index', 'show']);
     Route::prefix('exercises/{exercise}')->group(function () {
         Route::get('start', [ExerciseWordController::class, 'start'])->name('exercises.start');
-        Route::post('learn', [ExerciseWordController::class, 'learn'])->name('exercises.learn');
+        Route::get('learn', [ExerciseWordController::class, 'learn'])->name('exercises.learn');
         Route::get('test', [ExerciseWordController::class, 'test'])->name('exercises.test');
         Route::get('result', [ExerciseWordController::class, 'result'])->name('exercises.result');
     });
