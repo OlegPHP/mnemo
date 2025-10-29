@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TheoryController;
 use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\ExerciseWordController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
@@ -17,7 +18,14 @@ Route::view('dashboard', 'dashboard')
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('theories', TheoryController::class);
-    Route::resource('exercises', ExerciseController::class);
+    Route::resource('exercises', ExerciseController::class)->only(['index', 'show']);
+    Route::prefix('exercises/{exercise}')->group(function () {
+        Route::get('start', [ExerciseWordController::class, 'start'])->name('exercises.start');
+        Route::post('learn', [ExerciseWordController::class, 'learn'])->name('exercises.learn');
+        Route::get('test', [ExerciseWordController::class, 'test'])->name('exercises.test');
+        Route::get('result', [ExerciseWordController::class, 'result'])->name('exercises.result');
+    });
+
     Route::redirect('settings', 'settings/profile');
 
     Volt::route('settings/profile', 'settings.profile')->name('profile.edit');
