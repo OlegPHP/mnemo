@@ -12,6 +12,14 @@
                     </span>
                 </div>
             @endforeach
+            <flux:button
+                href="{{ route('exercises.test', ['exercise' => $exercise->slug]) }}"
+                type="submit"
+                variant="primary"
+                color="yellow"
+                class="w-full mt-4 cursor-pointer">
+                Начать тест
+            </flux:button>
         </div>
     </div>
 </x-layouts.app>

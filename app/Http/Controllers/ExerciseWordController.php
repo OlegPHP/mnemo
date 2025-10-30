@@ -17,7 +17,8 @@ class ExerciseWordController extends Controller
     }
 
     public function learn(Request $request, Exercise $exercise){
-        $validated = $request->validate(['number' => 'required|integer|min:1|max:25' ]);
+        $validated = $request->validate(['number' => 'required|integer|min:1|max:25' ],
+        ['number.required'=> 'Выберите количество слов']);
         $number = $validated['number'];
         $userId = auth()->id();
 
@@ -40,4 +41,19 @@ class ExerciseWordController extends Controller
 
         return view('exercise.english-words.learn', compact('exercise', 'selectedWords'));
     }
+
+    public function test(Request $request, Exercise $exercise){
+
+        $words = session('selectedWords', []);
+
+        if(empty($words)){
+            return redirect()->route('exercise.start', $exercise)
+                ->with('message', 'Ваша сессия устарела - начните упражнение заново.');
+        }
+
+        return view('exercise.english-words.test', compact('words', 'exercise'));
+    }
+
+
+
 }

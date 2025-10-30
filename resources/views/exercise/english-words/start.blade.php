@@ -11,7 +11,7 @@
                         <flux:select.option>{{ $i }}</flux:select.option>
                     @endfor
                 </flux:select>
-
+                <flux:error name="number" />
                 <flux:button
                     type="submit"
                     variant="primary"
