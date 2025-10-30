@@ -54,6 +54,54 @@ class ExerciseWordController extends Controller
         return view('exercise.english-words.test', compact('words', 'exercise'));
     }
 
+    public function result(Request $request, Exercise $exercise){
+
+        $user = auth()->user();
+        $answers = $request->input('answers', []);
+
+        $score = 0;
+        $details = [];
+
+        foreach($answers as $word => $userAnswer){
+            $correctRu = collect($exercise->data)->firstWhere('word', $word)['translation'] ?? '';
+            $isCorrect = mb_strtolower(trim($userAnswer)) === mb_strtolower($correctRu);
+
+            $details[] = [
+                'en' => $word,
+                'ru' => $correctRu,
+                'answer' => $userAnswer,
+                'correct' => $isCorrect,
+            ];
+            if($isCorrect){
+                $score++;
+            }
+
+        }
+            $result = $user->exerciseResults()->create([
+                'exercise_id' => $exercise->id,
+                'score' => $score,
+                'completed_at' => now(),
+            ]);
+
+        foreach($details as $detail){
+             $result->words()->create([
+                 'user_id' => $user->id,
+                'exercise_id' => $exercise->id,
+                'user_exercise_result_id' => $result->id,
+                'word_en' => $detail['en'],
+                'word_ru' => $detail['ru'],
+                 'answer' => $detail['answer'],
+                 'correct_answer' => $detail['correct'],
+            ]);
+        }
+
+        session()->forget(['selectedWords', 'exerciseId']);
+        $total = count($details);
+        $percent = $total ? round($score / $total * 100) : 0;
+        return view('exercise.english-words.result', compact('details', 'score', 'exercise', 'total', 'percent'));
+
+    }
+
 
 
 }

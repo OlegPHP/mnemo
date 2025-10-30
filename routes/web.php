@@ -23,7 +23,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('start', [ExerciseWordController::class, 'start'])->name('exercises.start');
         Route::get('learn', [ExerciseWordController::class, 'learn'])->name('exercises.learn');
         Route::get('test', [ExerciseWordController::class, 'test'])->name('exercises.test');
-        Route::get('result', [ExerciseWordController::class, 'result'])->name('exercises.result');
+        Route::post('result', [ExerciseWordController::class, 'result'])->name('exercises.result');
     });
 
     Route::redirect('settings', 'settings/profile');

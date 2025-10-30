@@ -22,7 +22,7 @@
                             </div>
 
                             <flux:input
-                                name="answers[{{ $index }}]"
+                                name="answers[{{ $word['word'] }}]"
                                 placeholder="Введите перевод"
                                 class="w-full"
                                 class:input="text-base"
@@ -135,14 +135,14 @@
                 }
             }
 
-            // Валидация при отправке формы
+            // Валидация перед отправкой формы
             form.addEventListener('submit', (e) => {
                 if (!validateCurrent()) {
                     e.preventDefault();
                 }
             });
 
-            // Поддержка клавиатуры
+            // Клавиатура: Enter → Далее / Отправить, стрелки ←→
             form.addEventListener('keydown', (e) => {
                 if (e.ctrlKey || e.altKey || e.metaKey) return;
 
