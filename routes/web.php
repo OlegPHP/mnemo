@@ -3,6 +3,7 @@
 use App\Http\Controllers\TheoryController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\ExerciseWordController;
+use App\Http\Controllers\ExerciseListController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
@@ -20,10 +21,21 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('theories', TheoryController::class);
     Route::resource('exercises', ExerciseController::class)->only(['index', 'show']);
     Route::prefix('exercises/{exercise}')->group(function () {
-        Route::get('start', [ExerciseWordController::class, 'start'])->name('exercises.start');
-        Route::get('learn', [ExerciseWordController::class, 'learn'])->name('exercises.learn');
-        Route::get('test', [ExerciseWordController::class, 'test'])->name('exercises.test');
-        Route::post('result', [ExerciseWordController::class, 'result'])->name('exercises.result');
+        // Английские слова
+        Route::prefix('words')->group(function () {
+            Route::get('start', [ExerciseWordController::class, 'start'])->name('exercises.words.start');
+            Route::get('learn', [ExerciseWordController::class, 'learn'])->name('exercises.words.learn');
+            Route::get('test', [ExerciseWordController::class, 'test'])->name('exercises.words.test');
+            Route::post('result', [ExerciseWordController::class, 'result'])->name('exercises.words.result');
+        });
+
+        // Список покупок
+        Route::prefix('list')->group(function () {
+            Route::get('start', [ExerciseListController::class, 'start'])->name('exercises.list.start');
+            Route::get('learn', [ExerciseListController::class, 'learn'])->name('exercises.list.learn');
+            Route::get('test', [ExerciseListController::class, 'test'])->name('exercises.list.test');
+            Route::post('result', [ExerciseListController::class, 'result'])->name('exercises.list.result');
+        });
     });
 
     Route::redirect('settings', 'settings/profile');

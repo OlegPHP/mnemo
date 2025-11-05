@@ -1,11 +1,11 @@
-<x-layouts.app :title="'Мнемотехники — список английских слов'">
+<x-layouts.app :title="'Мнемотехники — список покупок'">
     <div class="flex flex-col items-center justify-center min-h-[70vh] px-4">
         <div class="w-full max-w-md bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 rounded-2xl p-8 shadow-md transition-colors">
             <h1 class="text-2xl font-semibold text-center text-neutral-900 dark:text-white mb-6">
                 Выберите количество слов
             </h1>
 
-            <form action="{{ route('exercises.words.learn', ['exercise' => $exercise->slug]) }}" method="GET" class="space-y-6">
+            <form action="{{ route('exercises.list.learn', ['exercise' => $exercise->slug]) }}" method="GET" class="space-y-6">
                 <flux:select name="number" placeholder="Количество слов" class="w-full cursor-pointer">
                     @for ($i = 1; $i <= 25; $i++)
                         <flux:select.option>{{ $i }}</flux:select.option>

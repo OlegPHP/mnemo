@@ -5,18 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Exercise;
-use App\Models\UserExerciseWordResult;
-use App\Models\UserExerciseListResult;
+use App\Models\UserExerciseResult;
 
-class UserExerciseResult extends Model
+class UserExerciseListResult extends Model
 {
     protected $fillable = [
         'user_id',
         'exercise_id',
-        'score',
-        'comment',
-        'completed_at',
+        'user_exercise_result_id',
+        'position',
+        'word',
+        'answer',
+        'correct_answer',
     ];
+
 
     public function exercise()
     {
@@ -28,15 +30,8 @@ class UserExerciseResult extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function words()
+    public function userExercise()
     {
-        return $this->hasMany(UserExerciseWordResult::class);
+        return $this->belongsTo(UserExerciseResult::class);
     }
-
-    public function lists()
-    {
-        return $this->hasMany(UserExerciseListResult::class);
-    }
-
-
 }

@@ -1,15 +1,15 @@
-<x-layouts.app :title="'Мнемотехники — тест английских слов'">
+<x-layouts.app :title="'Мнемотехники — тест списка покупок'">
     <div class="flex flex-col items-center justify-center min-h-[70vh] px-4 py-12">
         <div class="w-full max-w-md bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 rounded-2xl p-8 shadow-md transition-colors">
             <h1 class="text-2xl font-semibold text-center text-neutral-900 dark:text-white mb-4">
-                Введите перевод слов
+                Введите слова вашего списка покупок
             </h1>
 
             <p id="progress" class="text-center text-sm text-neutral-700 dark:text-neutral-300 mb-6">
                 1 / {{ count($words) }}
             </p>
 
-            <form id="words-form" action="{{ route('exercises.words.result', ['exercise' => $exercise->slug]) }}" method="POST" class="space-y-4">
+            <form id="words-form" action="{{ route('exercises.list.result', ['exercise' => $exercise->slug]) }}" method="POST" class="space-y-4">
                 @csrf
 
                 @foreach ($words as $index => $word)
@@ -17,19 +17,19 @@
                         <div class="flex flex-col items-center space-y-3">
                             <div class="w-full bg-neutral-50 dark:bg-neutral-800 rounded-lg p-6 shadow-sm text-center transition-colors">
                                 <p class="text-lg font-medium text-neutral-900 dark:text-white">
-                                    {{ $word['word'] }}
+                                    {{ $loop->iteration }}
                                 </p>
                             </div>
 
                             <flux:input
-                                name="answers[{{ $word['word'] }}]"
-                                placeholder="Введите перевод"
+                                name="answers[{{ $word }}]"
+                                placeholder="Введите слово"
                                 class="w-full"
                                 class:input="text-base"
-                                aria-label="Перевод для {{ $word['word'] }}"
+                                aria-label="Ответ для {{ $word }}"
                                 data-answer-input
                             />
-                            <p class="text-red-500 text-sm hidden" data-error>Введите перевод, прежде чем перейти дальше</p>
+                            <p class="text-red-500 text-sm hidden" data-error>Введите слово, прежде чем перейти дальше</p>
                         </div>
                     </div>
                 @endforeach

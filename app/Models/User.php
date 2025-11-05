@@ -13,6 +13,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use App\Models\Exercise;
 use App\Models\UserExerciseResult;
 use App\Models\UserExerciseWordResult;
+use App\Models\UserExerciseListResult;
 
 class User extends Authenticatable
 {
@@ -75,5 +76,10 @@ class User extends Authenticatable
     public function exerciseWordResults()
     {
         return $this->hasMany(UserExerciseWordResult::class);
+    }
+
+    public function exerciseListResults()
+    {
+        return $this->hasMany(UserExerciseListResult::class);
     }
 }
