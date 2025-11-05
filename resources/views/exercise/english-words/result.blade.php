@@ -49,4 +49,9 @@
         </div>
 
     </div>
+    <div class="text-center mt-6">
+        <flux:button href="{{ route('exercises.words.start', ['exercise' => $exercise->slug]) }}" variant="primary" color="yellow">
+            Пройти снова
+        </flux:button>
+    </div>
 </x-layouts.app>
