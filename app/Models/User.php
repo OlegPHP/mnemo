@@ -14,6 +14,7 @@ use App\Models\Exercise;
 use App\Models\UserExerciseResult;
 use App\Models\UserExerciseWordResult;
 use App\Models\UserExerciseListResult;
+use App\Models\UserExercisePhoneResult;
 
 class User extends Authenticatable
 {
@@ -81,5 +82,10 @@ class User extends Authenticatable
     public function exerciseListResults()
     {
         return $this->hasMany(UserExerciseListResult::class);
+    }
+
+    public function exercisePhoneResults()
+    {
+        return $this->hasMany(UserExercisePhoneResult::class);
     }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\TheoryController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\ExerciseWordController;
 use App\Http\Controllers\ExerciseListController;
+use App\Http\Controllers\ExercisePhoneController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
@@ -35,6 +36,14 @@ Route::middleware(['auth'])->group(function () {
             Route::get('learn', [ExerciseListController::class, 'learn'])->name('exercises.list.learn');
             Route::get('test', [ExerciseListController::class, 'test'])->name('exercises.list.test');
             Route::post('result', [ExerciseListController::class, 'result'])->name('exercises.list.result');
+        });
+
+        // Номера телефонов
+        Route::prefix('phones')->group(function () {
+            Route::get('start', [ExercisePhoneController::class, 'start'])->name('exercises.phones.start');
+            Route::get('learn', [ExercisePhoneController::class, 'learn'])->name('exercises.phones.learn');
+            Route::get('test', [ExercisePhoneController::class, 'test'])->name('exercises.phones.test');
+            Route::post('result', [ExercisePhoneController::class, 'result'])->name('exercises.phones.result');
         });
     });
 

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Exercise;
 use App\Models\UserExerciseWordResult;
 use App\Models\UserExerciseListResult;
+use App\Models\UserExercisePhoneResult;
 
 class UserExerciseResult extends Model
 {
@@ -36,6 +37,11 @@ class UserExerciseResult extends Model
     public function lists()
     {
         return $this->hasMany(UserExerciseListResult::class);
+    }
+
+    public function phones()
+    {
+        return $this->hasMany(UserExercisePhoneResult::class);
     }
 
 
