@@ -8,6 +8,7 @@ use App\Models\Exercise;
 use App\Models\UserExerciseWordResult;
 use App\Models\UserExerciseListResult;
 use App\Models\UserExercisePhoneResult;
+use App\Models\UserExercisePasswordResult;
 
 class UserExerciseResult extends Model
 {
@@ -42,6 +43,11 @@ class UserExerciseResult extends Model
     public function phones()
     {
         return $this->hasMany(UserExercisePhoneResult::class);
+    }
+
+    public function passwords()
+    {
+        return $this->hasMany(UserExercisePasswordResult::class);
     }
 
 

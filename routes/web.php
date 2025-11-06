@@ -5,6 +5,7 @@ use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\ExerciseWordController;
 use App\Http\Controllers\ExerciseListController;
 use App\Http\Controllers\ExercisePhoneController;
+use App\Http\Controllers\ExercisePasswordController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
@@ -44,6 +45,14 @@ Route::middleware(['auth'])->group(function () {
             Route::get('learn', [ExercisePhoneController::class, 'learn'])->name('exercises.phones.learn');
             Route::get('test', [ExercisePhoneController::class, 'test'])->name('exercises.phones.test');
             Route::post('result', [ExercisePhoneController::class, 'result'])->name('exercises.phones.result');
+        });
+
+        // Пароли
+        Route::prefix('passwords')->group(function () {
+            Route::get('start', [ExercisePasswordController::class, 'start'])->name('exercises.passwords.start');
+            Route::get('learn', [ExercisePasswordController::class, 'learn'])->name('exercises.passwords.learn');
+            Route::get('test', [ExercisePasswordController::class, 'test'])->name('exercises.passwords.test');
+            Route::post('result', [ExercisePasswordController::class, 'result'])->name('exercises.passwords.result');
         });
     });
 

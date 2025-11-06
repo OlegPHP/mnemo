@@ -7,6 +7,7 @@ use App\Models\UserExerciseResult;
 use App\Models\UserExerciseWordResult;
 use App\Models\UserExerciseListResult;
 use App\Models\UserExercisePhoneResult;
+use App\Models\UserExercisePasswordResult;
 
 class Exercise extends Model
 {
@@ -36,6 +37,10 @@ class Exercise extends Model
 
     public function phoneResults(){
         return $this->hasMany(UserExercisePhoneResult::class);
+    }
+
+    public function passwordResults(){
+        return $this->hasMany(UserExercisePasswordResult::class);
     }
 
     public function getRouteKeyName()
