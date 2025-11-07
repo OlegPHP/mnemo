@@ -41,7 +41,7 @@
                             </div>
                         </td>
 
-                        <td class="px-4 py-2 border-b border-neutral-300 dark:border-neutral-700">{{$detail['number']}}</td>
+                        <td class="px-4 py-2 border-b border-neutral-300 dark:border-neutral-700">{{$detail['password']}}</td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -50,7 +50,7 @@
 
     </div>
     <div class="text-center mt-6">
-        <flux:button href="{{ route('exercises.phones.start', ['exercise' => $exercise->slug]) }}" variant="primary" color="yellow">
+        <flux:button href="{{ route('exercises.passwords.start', ['exercise' => $exercise->slug]) }}" variant="primary" color="yellow">
             Пройти снова
         </flux:button>
     </div>

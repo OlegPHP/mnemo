@@ -1,15 +1,15 @@
-<x-layouts.app :title="'Мнемотехники — тест номера телефонов'">
+<x-layouts.app :title="'Мнемотехники — тест пароли'">
     <div class="flex flex-col items-center justify-center min-h-[70vh] px-4 py-12">
         <div class="w-full max-w-md bg-neutral-100 dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-800 rounded-2xl p-8 shadow-md transition-colors">
             <h1 class="text-2xl font-semibold text-center text-neutral-900 dark:text-white mb-4">
-                Введите номера телефонов
+                Введите пароли
             </h1>
 
             <p id="progress" class="text-center text-sm text-neutral-700 dark:text-neutral-300 mb-6">
                 1 / {{ count($items) }}
             </p>
 
-            <form id="words-form" action="{{ route('exercises.phones.result', ['exercise' => $exercise->slug]) }}" method="POST" class="space-y-4">
+            <form id="words-form" action="{{ route('exercises.passwords.result', ['exercise' => $exercise->slug]) }}" method="POST" class="space-y-4">
                 @csrf
 
                 @foreach ($items as $index => $item)
@@ -23,13 +23,13 @@
 
                             <flux:input
                                 name="answers[{{ $item }}]"
-                                placeholder="Введите номер"
+                                placeholder="Введите пароль"
                                 class="w-full"
                                 class:input="text-base"
                                 aria-label="Ответ для {{ $item }}"
                                 data-answer-input
                             />
-                            <p class="text-red-500 text-sm hidden" data-error>Введите номер, прежде чем перейти дальше</p>
+                            <p class="text-red-500 text-sm hidden" data-error>Введите пароль, прежде чем перейти дальше</p>
                         </div>
                     </div>
                 @endforeach

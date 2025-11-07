@@ -42,4 +42,64 @@ class ExercisePasswordController extends Controller
 
         return view('exercise.passwords.learn', compact('exercise', 'selectedItems'));
     }
+
+    public function test(Request $request, Exercise $exercise){
+
+        $items = session('selectedItems', []);
+
+        if(empty($items)){
+            return redirect()->route('exercises.passwords.start', $exercise)
+                ->with('message', 'Ваша сессия устарела - начните упражнение заново.');
+        }
+
+        return view('exercise.passwords.test', compact('items', 'exercise'));
+    }
+
+    public function result(Request $request, Exercise $exercise){
+
+        $user = auth()->user();
+        $answers = $request->input('answers', []);
+
+        $score = 0;
+        $details = [];
+        $i = 1;
+        foreach($answers as $item => $userAnswer){
+
+            $isCorrect = trim($userAnswer) === trim($item);
+
+            $details[] = [
+                'position' => $i++,
+                'password' => $item,
+                'answer' => $userAnswer,
+                'correct' => $isCorrect,
+            ];
+            if($isCorrect){
+                $score++;
+            }
+
+        }
+        $result = $user->exerciseResults()->create([
+            'exercise_id' => $exercise->id,
+            'score' => $score,
+            'completed_at' => now(),
+        ]);
+
+        foreach($details as $detail){
+            $result->passwords()->create([
+                'user_id' => $user->id,
+                'exercise_id' => $exercise->id,
+                'user_exercise_result_id' => $result->id,
+                'position' => $detail['position'],
+                'password' => $detail['password'],
+                'answer' => $detail['answer'],
+                'correct_answer' => $detail['correct'],
+            ]);
+        }
+
+        session()->forget(['selectedItems', 'exerciseId']);
+        $total = count($details);
+        $percent = $total ? round($score / $total * 100) : 0;
+        return view('exercise.passwords.result', compact('details', 'score', 'exercise', 'total', 'percent'));
+
+    }
 }

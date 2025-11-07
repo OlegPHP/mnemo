@@ -47,7 +47,7 @@ class ExercisePhoneController extends Controller
         $items = session('selectedItems', []);
 
         if(empty($items)){
-            return redirect()->route('exercise.phones.start', $exercise)
+            return redirect()->route('exercises.phones.start', $exercise)
                 ->with('message', 'Ваша сессия устарела - начните упражнение заново.');
         }
 
