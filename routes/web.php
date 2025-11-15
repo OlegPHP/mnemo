@@ -15,13 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
+Route::redirect('/dashboard', '/result')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('theories', TheoryController::class);
     Route::resource('exercises', ExerciseController::class)->only(['index', 'show']);
+    Route::get('result', [ExerciseController::class, 'result'])->name('result');
+    Route::get('result/{type}', [ExerciseController::class, 'resultType'])->name('result.type');
+    Route::delete('result/{type}/reset', [ExerciseController::class, 'resetResult'])->name('result.reset');
+
     Route::prefix('exercises/{exercise}')->group(function () {
         // Английские слова
         Route::prefix('words')->group(function () {

@@ -15,6 +15,7 @@
                 <flux:navlist.group :heading="__('Меню')" class="grid">
                     <flux:navlist.item icon="academic-cap" :href="route('theories.index')" :current="request()->routeIs('theories.*')" wire:navigate>{{ __('Теория') }}</flux:navlist.item>
                     <flux:navlist.item icon="rocket-launch" :href="route('exercises.index')" :current="request()->routeIs('exercises.*')" wire:navigate>{{ __('Практика') }}</flux:navlist.item>
+                    <flux:navlist.item icon="folder" :href="route('result')" :current="request()->routeIs('result*')" wire:navigate>{{ __('Статистика') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 
