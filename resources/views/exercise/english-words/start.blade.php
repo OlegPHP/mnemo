@@ -4,6 +4,12 @@
             <h1 class="text-2xl font-semibold text-center text-neutral-900 dark:text-white mb-6">
                 Выберите количество слов
             </h1>
+            @if(session('message'))
+                <div class="mb-4 p-4 bg-yellow-100 text-yellow-800 border border-yellow-300 rounded-xl">
+                    {{ session('message') }}
+                </div>
+            @endif
+
 
             <form action="{{ route('exercises.words.learn', ['exercise' => $exercise->slug]) }}" method="GET" class="space-y-6">
                 <flux:select name="number" placeholder="Количество слов" class="w-full cursor-pointer">

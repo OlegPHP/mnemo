@@ -33,7 +33,7 @@ class ExerciseWordController extends Controller
         $selectedWords = Arr::take($unusedWords, $number);
 
         if(empty($selectedWords)){
-            return redirect()->route('exercise.start', $exercise)
+            return redirect()->route('exercises.words.start', $exercise)
                 ->with('message', 'Поздравляем, вы выучили все слова!');
         }
 
@@ -47,7 +47,7 @@ class ExerciseWordController extends Controller
         $words = session('selectedWords', []);
 
         if(empty($words)){
-            return redirect()->route('exercise.start', $exercise)
+            return redirect()->route('exercises.words.start', $exercise)
                 ->with('message', 'Ваша сессия устарела - начните упражнение заново.');
         }
 

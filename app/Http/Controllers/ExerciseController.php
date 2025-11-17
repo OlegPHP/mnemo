@@ -104,13 +104,21 @@ class ExerciseController extends Controller
     {
         $user = auth()->user();
 
-        match ($type) {
-            'words' => $user->exerciseWordResults()->delete(),
-            'list' => $user->exerciseListResults()->delete(),
-            'phones' => $user->exercisePhoneResults()->delete(),
-            'passwords' => $user->exercisePasswordResults()->delete(),
-            default => null,
-        };
+        $map = [
+            'words'     => 1,
+            'list'      => 2,
+            'phones'    => 3,
+            'passwords' => 4,
+        ];
+
+        if (!isset($map[$type])) {
+            return back()->with('success', 'Сбой сброса.');
+        }
+
+        $typeId = $map[$type];
+
+        $user->exerciseResults()->where('exercise_id', $typeId)->delete();
+
 
         return redirect()->back()->with('success', 'Статистика успешно сброшена.');
     }

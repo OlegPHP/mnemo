@@ -5,6 +5,12 @@
                 Выберите количество паролей
             </h1>
 
+            @if(session('message'))
+                <div class="mb-4 p-4 bg-yellow-100 text-yellow-800 border border-yellow-300 rounded-xl">
+                    {{ session('message') }}
+                </div>
+            @endif
+
             <form action="{{ route('exercises.passwords.learn', ['exercise' => $exercise->slug]) }}" method="GET" class="space-y-6">
                 <flux:select name="number" placeholder="Количество паролей" class="w-full cursor-pointer">
                     @for ($i = 1; $i <= 10; $i++)
