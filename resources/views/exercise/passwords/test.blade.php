@@ -22,7 +22,7 @@
                             </div>
 
                             <flux:input
-                                name="answers[{{ $item }}]"
+                                name="answers[{{ $index }}]"
                                 placeholder="Введите пароль"
                                 class="w-full"
                                 class:input="text-base"

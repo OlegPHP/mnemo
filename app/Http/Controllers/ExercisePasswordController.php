@@ -60,16 +60,18 @@ class ExercisePasswordController extends Controller
         $user = auth()->user();
         $answers = $request->input('answers', []);
 
+        $items = session('selectedItems', []);
+
         $score = 0;
         $details = [];
         $i = 1;
-        foreach($answers as $item => $userAnswer){
+        foreach($answers as $index => $userAnswer){
 
-            $isCorrect = trim($userAnswer) === trim($item);
+            $isCorrect = trim($userAnswer) === trim($items[$index]);
 
             $details[] = [
                 'position' => $i++,
-                'password' => $item,
+                'password' => $items[$index],
                 'answer' => $userAnswer,
                 'correct' => $isCorrect,
             ];
