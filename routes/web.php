@@ -6,14 +6,18 @@ use App\Http\Controllers\ExerciseWordController;
 use App\Http\Controllers\ExerciseListController;
 use App\Http\Controllers\ExercisePhoneController;
 use App\Http\Controllers\ExercisePasswordController;
+use App\Http\Controllers\DescriptionController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return auth()->check() ? redirect()->route('dashboard') : view('welcome');
 })->name('home');
+
+Route::get('description', [DescriptionController::class, 'index'])->name('description');
+Route::get('description/{theory}', [DescriptionController::class, 'show'])->name('description.show');
 
 Route::redirect('/dashboard', '/result')
     ->middleware(['auth', 'verified'])

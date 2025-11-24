@@ -22,29 +22,34 @@
                 @endif
             @endauth
         @endif
-
     </div>
 </header>
 
-
 <!-- Основной контент -->
 <main class="flex flex-1 flex-col md:flex-row items-center justify-center p-8 md:p-16 space-y-8 md:space-y-0 md:space-x-16">
-    <!-- Логотип -->
     <div class="flex-shrink-0">
         <img src="{{ asset('image/mnemo.jpg') }}" alt="Mnemo Logo" class="w-48 h-auto mx-auto md:mx-0">
     </div>
-
-    <!-- Текст рядом -->
     <div class="text-center md:text-left max-w-lg space-y-4">
-        <p class="text-xl font-semibold">Мнемотехники. Теория и практика.</p>
-        <p class="text-lg">Станьте архитектором своего дворца памяти.</p>
+        <p class="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            Мнемотехники. Теория и практика.
+        </p>
+        <p class="text-lg text-gray-700 dark:text-gray-300">
+            Мы хотим помочь вам улучшить память с помощью простых и эффективных методик.
+        </p>
+
+            <a href="{{ route('description') }}"
+               class="inline-block mt-4 px-5 py-2 bg-gradient-to-r from-blue-400 to-purple-500
+              text-white font-semibold rounded-lg shadow-md hover:from-blue-500 hover:to-purple-600
+              transition-all duration-200">
+                Узнать больше о проекте
+            </a>
+
     </div>
 </main>
 
-<!-- Футер -->
 <footer class="mt-auto p-4 border-t border-gray-200 text-center text-sm">
     Oleg Vlasov's projects 2025. All rights reserved.
 </footer>
-
 </body>
 </html>
