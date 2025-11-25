@@ -39,9 +39,9 @@
         </p>
 
             <a href="{{ route('description') }}"
-               class="inline-block mt-4 px-5 py-2 bg-gradient-to-r from-blue-400 to-purple-500
-              text-white font-semibold rounded-lg shadow-md hover:from-blue-500 hover:to-purple-600
-              transition-all duration-200">
+               class="inline-block mt-4 px-5 py-2 bg-gradient-to-r from-yellow-100 to-yellow-200
+                      rounded-xl shadow-md hover:shadow-lg transition-all duration-200
+                      text-gray-900 font-semibold hover:from-yellow-200 hover:to-yellow-300">
                 Узнать больше о проекте
             </a>
 
