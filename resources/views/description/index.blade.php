@@ -58,7 +58,7 @@
 </main>
 
 <footer class="mt-auto p-4 border-t border-gray-200 text-center text-sm">
-    Oleg Vlasov's projects 2025. All rights reserved.
+    Oleg Vlasov's projects {{date('Y')}}. All rights reserved.
 </footer>
 </body>
 </html>

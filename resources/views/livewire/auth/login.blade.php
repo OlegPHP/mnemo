@@ -12,8 +12,11 @@ use Laravel\Fortify\Features;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
+use Livewire\Attributes\Title;
 
-new #[Layout('components.layouts.auth')] class extends Component {
+new #[Layout('components.layouts.auth')]
+#[Title('Вход')]
+ class extends Component {
     #[Validate('required|string|email')]
     public string $email = '';
 

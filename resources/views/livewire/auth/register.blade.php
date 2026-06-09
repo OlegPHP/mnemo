@@ -8,8 +8,11 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
+use Livewire\Attributes\Title;
 
-new #[Layout('components.layouts.auth')] class extends Component {
+new #[Layout('components.layouts.auth')]
+#[Title('Регистрация')]
+ class extends Component {
     public string $name = '';
     public string $email = '';
     public string $password = '';

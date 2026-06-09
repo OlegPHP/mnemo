@@ -31,10 +31,10 @@
         <img src="{{ asset('image/mnemo.jpg') }}" alt="Mnemo Logo" class="w-48 h-auto mx-auto md:mx-0">
     </div>
     <div class="text-center md:text-left max-w-lg space-y-4">
-        <p class="text-2xl font-bold text-gray-900 dark:text-gray-100">
+        <p class="text-2xl font-bold text-gray-900">
             Мнемотехники. Теория и практика.
         </p>
-        <p class="text-lg text-gray-700 dark:text-gray-300">
+        <p class="text-lg text-gray-700">
             Мы хотим помочь вам улучшить память с помощью простых и эффективных методик.
         </p>
 
