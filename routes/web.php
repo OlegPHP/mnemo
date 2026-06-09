@@ -10,6 +10,9 @@ use App\Http\Controllers\DescriptionController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Livewire\Volt\Volt;
+use App\Http\Controllers\Settings\ProfileController;
+use App\Http\Controllers\Settings\PasswordController;
+use App\Http\Controllers\Settings\AppearanceController;
 
 
 Route::get('/', function () {
@@ -32,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('result/{type}/reset', [ExerciseController::class, 'resetResult'])->name('result.reset');
 
     Route::prefix('exercises/{exercise}')->group(function () {
+
+
         // Английские слова
         Route::prefix('words')->group(function () {
             Route::get('start', [ExerciseWordController::class, 'start'])->name('exercises.words.start');
@@ -67,20 +72,12 @@ Route::middleware(['auth'])->group(function () {
 
     Route::redirect('settings', 'settings/profile');
 
-    Volt::route('settings/profile', 'settings.profile')->name('profile.edit');
-    Volt::route('settings/password', 'settings.password')->name('password.edit');
-    Volt::route('settings/appearance', 'settings.appearance')->name('appearance.edit');
+    Route::get('settings/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('settings/profile', [ProfileController::class, 'update'])->name('profile.update');
 
-    Volt::route('settings/two-factor', 'settings.two-factor')
-        ->middleware(
-            when(
-                Features::canManageTwoFactorAuthentication()
-                    && Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword'),
-                ['password.confirm'],
-                [],
-            ),
-        )
-        ->name('two-factor.show');
+Route::get('settings/password', [PasswordController::class, 'edit'])->name('password.edit');
+Route::put('settings/password', [PasswordController::class, 'update'])->name('password.update');
+
 });
 
 require __DIR__.'/auth.php';
