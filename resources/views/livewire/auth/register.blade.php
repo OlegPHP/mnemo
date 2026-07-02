@@ -17,6 +17,8 @@ new #[Layout('components.layouts.auth')]
     public string $email = '';
     public string $password = '';
     public string $password_confirmation = '';
+    public $privacy;
+
 
     /**
      * Handle an incoming registration request.
@@ -27,7 +29,13 @@ new #[Layout('components.layouts.auth')]
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-        ]);
+            'privacy' => ['accepted'],
+        ],
+            [],
+            [
+                'privacy' => 'политику конфиденциальности',
+            ]
+        );
 
         $validated['password'] = Hash::make($validated['password']);
 
@@ -90,6 +98,26 @@ new #[Layout('components.layouts.auth')]
             :placeholder="__('Confirm password')"
             viewable
         />
+
+        <div class="mt-4">
+            <label class="flex items-start space-x-2 text-sm text-gray-600">
+                <input type="checkbox" wire:model="privacy" class="mt-1 rounded border-gray-300">
+
+                <span>
+            Я принимаю
+            <a href="{{ route('privacy.policy') }}" class="underline">
+                Политику конфиденциальности
+            </a>
+            и даю согласие на обработку персональных данных.
+        </span>
+            </label>
+
+            @error('privacy')
+            <div class="text-red-500 text-sm mt-1">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
 
         <div class="flex items-center justify-end">
             <flux:button type="submit" variant="primary" class="w-full" data-test="register-user-button">

@@ -25,7 +25,7 @@ Route::get('description/{theory}', [DescriptionController::class, 'show'])->name
 Route::redirect('/dashboard', '/result')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
-
+Route::view('/privacy-policy', 'legal.privacy')->name('privacy.policy');
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('theories', TheoryController::class);

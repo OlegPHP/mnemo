@@ -9,15 +9,15 @@
 <body class="flex flex-col min-h-screen bg-gray-50 text-gray-800">
 
 <header class="flex justify-between items-center p-4 border-b border-gray-200">
-    <div class="text-2xl font-bold">Mnemo</div>
+    <div class="text-2xl font-bold"><a href="{{route('home')}}">MnemoLab</a></div>
     <div class="space-x-4">
         @if (Route::has('login'))
             @auth
                 <a href="{{ url('/dashboard') }}" class="px-3 py-1 rounded">Dashboard</a>
             @else
-                <a href="{{ route('login') }}" class="px-3 py-1 rounded">Login</a>
+                <a href="{{ route('login') }}" class="px-3 py-1 rounded">Вход</a>
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="px-3 py-1 rounded">Register</a>
+                    <a href="{{ route('register') }}" class="px-3 py-1 rounded">Регистрация</a>
                 @endif
             @endauth
         @endif
@@ -41,6 +41,11 @@
 
 <footer class="mt-auto p-4 border-t border-gray-200 text-center text-sm">
     Oleg Vlasov's projects {{date('Y')}}. All rights reserved.
+    <div class="text-center text-sm text-gray-500 py-6">
+        <a href="{{ route('privacy.policy') }}" class="hover:underline">
+            Политика конфиденциальности
+        </a>
+    </div>
 </footer>
 </body>
 </html>
